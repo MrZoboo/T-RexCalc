@@ -1,0 +1,92 @@
+﻿<Window x:Class="MenuDesign.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:MenuDesign"
+        xmlns:viewModel="clr-namespace:MenuDesign.MVVM.ViewModel" 
+        mc:Ignorable="d"
+        Height="600" Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <!--Menu principal-->
+    <Border Background="#FF69686B" CornerRadius="20" MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="T-Rexfy"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       FontSize="22"
+                       Margin="0,0,0,0">
+
+            </TextBlock>
+            <Border Grid.Row="1" 
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    CornerRadius="20, 20,0,20"
+                    Background="#FF848484">
+                <StackPanel Grid.Row="1">
+                <RadioButton Content="Home"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCommand}"/>
+                <RadioButton Content="Videos"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding VideosViewCommand}"/>
+                <RadioButton Content="Sobre"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"/>
+            </StackPanel>
+            </Border>
+            
+
+            
+            
+                <StackPanel Grid.Column="1">
+                <Button Content="Quit"
+                             HorizontalAlignment="Right"
+                        Margin="10"
+                        Name="btnQuit"
+                        Click="btnQuit_Click"
+                                 Height="50"
+                                 Foreground="White"
+                                 FontSize="14"
+                                 Style="{StaticResource FormButtonTheme}"
+                                 Command="{Binding HomeViewCommand}"/>
+            </StackPanel>
+            <ContentControl Grid.Row="1" 
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
+
+        </Grid>
+    </Border>
+</Window>
